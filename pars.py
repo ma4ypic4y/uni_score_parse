@@ -28,7 +28,6 @@ def create_message(name):
         message+=f'Сумма баллов 👉: {d["score"]}\n'
         message+=f'Документ 📕: {d["doc_type"]}\n'
         message+=f'Место в рейтинге 🎖: {d["stud_pos"]}/{d["num_all"]}  \n'
-        print(d["stud_orig_pos"])
         if d["stud_orig_pos"][0]!='-':
             message+=f'Место среди оригиналов 🏆: {d["stud_orig_pos"]}/{d["num_orig"]} \n'
         else:
@@ -41,14 +40,8 @@ def echo(update, context):
     return  update.message.reply_text(create_message(update.message.text))
 
 
-
-
 dispatcher.add_handler(CommandHandler("start", start))
-
 dispatcher.add_handler(MessageHandler(Filters.text, echo))
-
 updater.start_polling()
-
-
 
 updater.idle()
