@@ -42,7 +42,14 @@ def get_all_data(table,col):
     return df_all
 
 
-df = get_all_data(table,col)
+def get_df():
+    URL = 'https://uni-dubna.ru/SectionPage?id=3e60f97f-8df2-4c27-9a6d-fdc8a1134566'
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.text, "html.parser") # full html code
+    table = soup.findAll('table')
+    col = ['N', 'ФИО', 'Сумма баллов','Вид документа об образовании','Согласие на зачисление','Зачислен']
+    df = get_all_data(table,col)
+    return df
 
 
 def get_study_prog(df,stud_name):
