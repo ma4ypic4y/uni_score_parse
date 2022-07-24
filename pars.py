@@ -14,7 +14,7 @@ dispatcher = updater.dispatcher
 
 def start(update, context):
     first_name = update.message.chat.first_name
-    update.message.reply_text(f"Hi {first_name}, nice to meet you!")
+    update.message.reply_text(f"Привет {first_name}, чтобы получить информацию по конкурсным спискам необходимо ввести интересующее ФИО. Например: Черемисина Евгения Наумовна")
 
 def create_message(name):
     data,date = stud_info(name)
