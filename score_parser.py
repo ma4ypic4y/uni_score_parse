@@ -55,7 +55,7 @@ def get_df():
 def get_study_prog(df,stud_name):
     return df[df['ФИО']==stud_name]['Направление'].values
 
-async def stud_info(stud_name):
+def stud_info(stud_name):
     df=get_df()
     programs = get_study_prog(df,stud_name)
     all_info = []
@@ -72,6 +72,15 @@ async def stud_info(stud_name):
         d['form_education'] = info[7]
         d['places'] = info[8]
         all_info.append(d)
-    return await all_info
+    return all_info
 
-print(stud_info("Глуховцев Павел Игоревич"))
+def message(stud_name):
+    lst=stud_info(stud_name)
+    s='--------------------------------------------\n'
+    s+=lst[0]['fio']
+    for elem in lst:
+        s+=(elem['score'])+'\n'
+        s+=(elem['program'])+'\n'
+        s+=(elem['places'])+'\n'
+        s+=('--------------------------------------------')
+    return s
